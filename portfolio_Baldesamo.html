@@ -1,318 +1,233 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
-    <%--
-    <link rel="stylesheet" type="text/css" href="dark-theme.css">--%>
     <link rel="stylesheet" type="text/css" href="gitHub_Theme.css">
-
     <link rel="stylesheet" type="text/css" href="dark-theme.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    
 
     <style>
         /* General body styling */
-body {
-    background-color: #0d1117;
-    color: #c9d1d9;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    margin: 0;
-    padding: 0;
-}
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            margin: 0;
+            padding: 0;
+        }
 
-/* Header styling */
-header {
-    background-color: #161b22;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 1px solid #21262d;
-}
+        /* Header styling */
+        header {
+            background-color: #161b22;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #21262d;
+        }
 
-    header h1 {
-        color: #f0f6fc;
-        margin: 0;
-    }
+        header h1 {
+            color: #f0f6fc;
+            margin: 0;
+        }
 
+        /* Navigation styling */
+        nav {
+            background-color: #161b22;
+            padding: 20px;
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border-right: 1px solid #21262d;
+        }
 
+        nav img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 2px solid #c9d1d9;
+        }
 
-/* Navigation styling */
-nav {
-    background-color: #161b22;
-    padding: 20px;
-    width: 200px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    border-right: 1px solid #21262d;
-}
-
-    nav img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        margin-bottom: 20px;
-        border: 2px solid #c9d1d9;
-    }
-
-    nav a {
-        color: #c9d1d9;
-        text-decoration: none;
-        padding: 10px;
-        display: block;
-        width: 100%;
-        text-align: left;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        transition: background-color 0.3s, color 0.3s;
-    }
+        nav a {
+            color: #c9d1d9;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
         nav a:hover {
             background-color: #30363d;
             color: #ffffff;
         }
 
-/* Main content styling */
-main {
-    margin-left: 220px;
-    padding: 20px;
-}
+        /* Main content styling */
+        main {
+            margin-left: 220px;
+            padding: 20px;
+        }
 
+        html {
+            scroll-behavior: smooth; /* Enables smooth scrolling for the entire document */
+        }
 
-html {
-    scroll-behavior: smooth; /* Enables smooth scrolling for the entire document */
-}
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px; /* Adjust spacing between cards */
+            margin: 20px auto;
+            width: 90%;
+        }
 
+        .image-gallery {
+            overflow: hidden;
+            position: relative;
+            width: 100%; /* Ensure it takes the full width of its container */
+            height: 400px; /* Set a specific height for the gallery */
+        }
 
-    /*display: flex;*/
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; /* Adjust spacing between cards */
-    margin: 20px auto;
-    width: 90%;
-    /*max-width: 600px;*/ /* Adjust max width as needed */
-}
+        .image-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%; /* Full width to align with the .image-gallery width */
+            height: 100%; /* Ensure the wrapper takes the full height of the .image-gallery */
+        }
 
+        .image-wrapper img {
+            width: 100%; /* Ensure images fill the width of the wrapper */
+            height: auto; /* Maintain aspect ratio of images */
+            flex-shrink: 0; /* Prevent images from shrinking */
+        }
 
-/*.image-gallery {
-    overflow: hidden;
-    position: relative;
-}
+        .card {
+            background-color: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
 
-.image-wrapper {
-    display: flex;
-    transition: transform 0.5s ease;
-}
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
 
-    .image-wrapper img {
-        width: 100%;
-        flex-shrink: 0;
-    }*/
+        .card h1, .card h2, .card h3, .card p {
+            margin: 0 0 15px 0;
+        }
 
-.image-gallery {
-    overflow: hidden;
-    position: relative;
-    width: 100%; /* Ensure it takes the full width of its container */
-    height: 400px; /* Set a specific height for the gallery */
-}
+        .card h1 {
+            color: #58a6ff; /* Blue color for emphasis */
+            font-size: 2em;
+            font-weight: bold;
+        }
 
-.image-wrapper {
-    display: flex;
-    transition: transform 0.5s ease;
-    width: 100%; /* Full width to align with the .image-gallery width */
-    height: 100%; /* Ensure the wrapper takes the full height of the .image-gallery */
-}
+        .card h2 {
+            color: #8b949e;
+            font-size: 1.5em;
+        }
 
-    .image-wrapper img {
-        width: 100%; /* Ensure images fill the width of the wrapper */
-        height: auto; /* Maintain aspect ratio of images */
-        flex-shrink: 0; /* Prevent images from shrinking */
-    }
+        .card h3 {
+            color: #c9d1d9;
+            font-size: 1.2em;
+        }
 
+        .card p {
+            color: #c9d1d9;
+            font-size: 1em;
+            line-height: 1.5em;
+        }
 
-.card {
-    background-color: #161b22;
-    border: 1px solid #21262d;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 20px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    width: 100%;
-}
-
-
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .card h1, .card h2, .card h3, .card p {
-        margin: 0 0 15px 0;
-    }
-
-    .card h1 {
-        color: #58a6ff; /* Blue color for emphasis */
-        font-size: 2em;
-        font-weight: bold;
-    }
-
-    .card h2 {
-        color: #8b949e;
-        font-size: 1.5em;
-    }
-
-    .card h3 {
-        color: #c9d1d9;
-        font-size: 1.2em;
-    }
-
-    .card p {
-        color: #c9d1d9;
-        font-size: 1em;
-        line-height: 1.5em;
-    }
-
-/* Footer styling */
-footer {
-    background-color: #161b22;
-    padding: 10px;
-    text-align: center;
-    color: #8b949e;
-    border-top: 1px solid #21262d;
-    position: fixed;
-    width: calc(100% - 200px);
-    left: 200px;
-    bottom: 0;
-}
-
+        /* Footer styling */
+        footer {
+            background-color: #161b22;
+            padding: 10px;
+            text-align: center;
+            color: #8b949e;
+            border-top: 1px solid #21262d;
+            position: fixed;
+            width: calc(100% - 200px);
+            left: 200px;
+            bottom: 0;
+        }
     </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-    const imageWrappers = document.querySelectorAll('.image-wrapper');
+            const imageWrappers = document.querySelectorAll('.image-wrapper');
 
-    imageWrappers.forEach(imageWrapper => {
-        const images = imageWrapper.querySelectorAll('img');
-        const totalImages = images.length;
-        let currentIndex = 0;
+            imageWrappers.forEach(imageWrapper => {
+                const images = imageWrapper.querySelectorAll('img');
+                const totalImages = images.length;
+                let currentIndex = 0;
 
-        function autoSwipe() {
-            currentIndex++;
-            if (currentIndex >= totalImages) {
-                currentIndex = 0;
-            }
-            const offset = -currentIndex * 100;
-            imageWrapper.style.transform = `translateX(${offset}%)`;
-        }
+                function autoSwipe() {
+                    currentIndex++;
+                    if (currentIndex >= totalImages) {
+                        currentIndex = 0;
+                    }
+                    const offset = -currentIndex * 100;
+                    imageWrapper.style.transform = `translateX(${offset}%)`;
+                }
 
-        setInterval(autoSwipe, 3000); // Change image every 3 seconds
-    });
-});
-
-    
+                setInterval(autoSwipe, 3000); // Change image every 3 seconds
+            });
+        });
     </script>
-
 </head>
 <body>
     <header>
         <h1>My Portfolio</h1>
     </header>
     <nav>
-        <img src="C:\Users\Others\Desktop\OJT REQUIRMENT\GradPIc_Seniorhigh.png" alt="Profile Picture">
+        <img src="GradPIc_Seniorhigh.png" alt="Profile Picture">
         <a href="#about"><i class="fas fa-user"></i> About</a>
         <a href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
         <a href="#skills"><i class="fas fa-tools"></i> Skills</a>
         <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
         <a href="#affiliations"><i class="fas fa-users"></i> Affiliations</a>
-        <a href="#Projects"><i class="fas fa-project-diagram"></i> Projects</a>
+        <a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a>
     </nav>
     <main>
         <section id="about" class="card">
-
             <h1>FRANCO BALDESAMO</h1>
             <h2>BSIT</h2>
             <p>
-                passionate in using my academic
-                knowledge and skills in a real-world setting.
-                Eager to secure an internship opportunity
-                that not only matches my academic
-                interests but also helps me learn and grow
-                in my career through hands-on
-                experiences.
-
-                <br />
-                <br />
-                <br />
+                Passionate in using my academic knowledge and skills in a real-world setting. Eager to secure an internship opportunity that not only matches my academic interests but also helps me learn and grow in my career through hands-on experiences.
             </p>
-
-
-
         </section>
 
         <section id="education" class="card">
             <h2>Education</h2>
             <p>
-
-
-
-                <br />
-                Bachelor of Science in Information Technology
-                <br />
-                Mapua Malayan Colleges of Laguna
-
-                <br />
-
-                2020 - Present
-
-                <br />
-                <br />
-                Information and Communications Technology
-
-                <br />
-                AMA Binan Senior Highschool
-
-                <br />
-
+                Bachelor of Science in Information Technology<br>
+                Mapua Malayan Colleges of Laguna<br>
+                2020 - Present<br><br>
+                Information and Communications Technology<br>
+                AMA Binan Senior Highschool<br>
                 2018 - 2020
-
-
-
             </p>
         </section>
 
         <section id="skills" class="card">
             <h2>Skills</h2>
             <p>
-                Database Management: SQL, MySQL, Microsoft Access, Azure
-
-                <br />
-                <br />
-                Web Development: HTML, CSS, JavaScript, PHP, ASP.NET,
-
-                <br />
-                <br />
-
-                Programming Languages: C# C++, Python, Java
-
-                <br />
-                <br />
-                Application Tools:
-                IDE: Visual Studio, Sublime, Arduino IDE
-
-                <br />
-                <br />
-
+                Database Management: SQL, MySQL, Microsoft Access, Azure<br><br>
+                Web Development: HTML, CSS, JavaScript, PHP, ASP.NET<br><br>
+                Programming Languages: C#, C++, Python, Java<br><br>
+                Application Tools: Visual Studio, Sublime, Arduino IDE<br><br>
                 Microsoft Office Suite (Word, Excel, PowerPoint)
             </p>
         </section>
@@ -320,186 +235,55 @@ footer {
         <section id="experience" class="card">
             <h2>Experience</h2>
             <p>
-                Designing and implementing a comprehensive LAN infrastructure for the the entire building.
-
-                <br />
-                Junior Trainee: AMA Binan | 2020
-
-                <br />
-                <br />
-
-                <br />
-                <br />
-                Online Marketplace Seller (Hobby) | 2017 - Present
-
-                <br />
-
-                Gained skill in attracting customers to what I am selling and acquired the ability to tailor communication strategies to meet the needs of different customers.
+                Designing and implementing a comprehensive LAN infrastructure for the entire building.<br>
+                Junior Trainee: AMA Binan | 2020<br><br>
+                Online Marketplace Seller (Hobby) | 2017 - Present<br>
+                Gained skill in attracting customers and acquired the ability to tailor communication strategies to meet the needs of different customers.
             </p>
         </section>
 
         <section id="affiliations" class="card">
             <h2>Affiliations</h2>
             <p>
-                President / Lead Trainer   2018 - 2019
-                Lingkod ng Dambana
-
-                <br />
-                Member   2015 - Present
-
-                <br />
-                <br />
-                Videographer
-                Social Communications Ministry | 2021-2022
-
-                <br />
-                Photographer / Videographer
-                CineAma | 2019-2020
-
-                <br />
-                <br />
-                Thesis Leader
-                AMA: Thesis Web Design | 2020-2021
+                President / Lead Trainer | 2018 - 2019<br>
+                Lingkod ng Dambana | Member | 2015 - Present<br><br>
+                Videographer | Social Communications Ministry | 2021-2022<br>
+                Photographer / Videographer | CineAma | 2019-2020<br><br>
+                Thesis Leader | AMA: Thesis Web Design | 2020-2021
             </p>
         </section>
 
-        <section id="Projects" class="card-container">
-
+        <section id="projects" class="card-container">
             <div class="card">
-                <h2>Projects</h2>
                 <div class="image-gallery">
                     <div class="image-wrapper">
-                        <img src="C:\Users\Others\Downloads\rr1.png">
-                        <img src="C:\Users\Others\Downloads\rr2.png">
-                        <img src="C:\Users\Others\Downloads\rr3.png">
+                        <img src="Ana2.JPG" alt="Sample Image 1">
+                        <img src="room.JPG" alt="Sample Image 2">
+                        <img src="Software.JPG" alt="Sample Image 3">
                     </div>
                 </div>
-                <div class="card-content">
-                    <p>
-                        Reference: <a href="https://github.com/Fbaldesamo?tab=repositories">GitHub Repositories</a><br><br>
-                        <strong>Epaper RoomScheduling - Present</strong><br>
-                        Our capstone project enables users to request room reservations,<br>
-                        which are then reviewed and accepted by the IFO.
-                        Additionally,<br> our ePaper module displays information about the assigned room.
-                    </p>
-                </div>
+                <h2>Artificial Neural Network</h2>
+                <p>
+                    Project involving the implementation of an artificial neural network model.
+                </p>
             </div>
-
             <div class="card">
-                <h2>Projects</h2>
                 <div class="image-gallery">
                     <div class="image-wrapper">
-                        <img src="C:\Users\Others\Downloads\d1.png">
-                        <img src="C:\Users\Others\Downloads\d2.png">
-                        <img src="C:\Users\Others\Downloads\d3.png">
+                        <img src="Web1.JPG" alt="Sample Image 1">
+                        <img src="Web2.JPG" alt="Sample Image 2">
+                        <img src="Web3.JPG" alt="Sample Image 3">
                     </div>
                 </div>
-                <div class="card-content">
-                    <p>
-                        <strong>Distriphil Automation of Every Process - (Internship)</strong><br>
-                        Transforming manual processes across inbound, warehousing, and outbound operations into a single scan system.<br>
-                        <br>
-                        significantly reduces errors such as double encoding and miscounting,<br>
-                        and ensures accurate and efficient information management.
-                    </p>
-                </div>
+                <h2>Web Development Project</h2>
+                <p>
+                    Developed a dynamic website for a local business.
+                </p>
             </div>
-
-            <div class="card">
-                <h2>Projects</h2>
-                <div class="image-gallery">
-                    <div class="image-wrapper">
-                        <img src="C:\Users\Others\Downloads\rd1.png">
-                        <img src="C:\Users\Others\Downloads\rd2.png">
-                        <img src="C:\Users\Others\Downloads\rd3.png">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <p>
-                        <strong>Distriphil Return Slip - (Internship)</strong><br>
-                        A form designed for processing returns.<br>
-                        It captures essential details such as item information,
-                        reason for return,
-                        quantity,
-                        customer information, and more,
-                        ensuring a smooth and efficient return process.
-                        Ideal for managing returns and maintaining accurate records.
-                    </p>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>Projects</h2>
-                <div class="image-gallery">
-                    <div class="image-wrapper">
-                        <img src="C:\Users\Others\Downloads\ws1.png">
-                        <img src="C:\Users\Others\Downloads\ws2.jpg">
-                        <img src="C:\Users\Others\Downloads\ws3.jpg">
-                        <img src="C:\Users\Others\Downloads\ws4.png">
-                        <img src="C:\Users\Others\Downloads\ws5.png">
-                        <img src="C:\Users\Others\Downloads\ws6.jpg">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <p>
-                        Reference: <a href="https://github.com/Fbaldesamo?tab=repositories">GitHub Repositories</a><br><br>
-                        <strong>Weather Sensor - March 2023</strong><br>
-                        A weather monitoring system built with NodeMCU and various sensors.
-                        This setup captures real-time environmental data such as temperature, humidity,
-                        providing accurate weather readings.
-                        It combines the versatility of NodeMCU with reliable sensor technology.
-                    </p>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>Projects</h2>
-                <div class="image-gallery">
-                    <div class="image-wrapper">
-                        <img src="C:\Users\Others\Downloads\f2.png" alt="Project Image 1">
-                        <img src="C:\Users\Others\Downloads\f3.png" alt="Project Image 1">
-                        <!-- <img src="IMG/f4.mp4" alt="Project Image 1"> -->
-                    </div>
-                </div>
-                <div class="card-content">
-                    <p>
-                        Reference: <a href="https://github.com/Fbaldesamo?tab=repositories">GitHub Repositories</a><br><br>
-                        <strong>Four Pics 1 Word Game - June 2021</strong><br>
-                        An engaging word puzzle game where players guess the common word that links four distinct images.
-                        This game challenges vocabulary and visual association skills,
-                        offering a fun and stimulating experience through various levels of difficulty.
-                    </p>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>Projects</h2>
-                <div class="image-gallery">
-                    <div class="image-wrapper">
-                        <img src="C:\Users\Others\Downloads\wb1.png" alt="Project Image 1">
-                        <img src="C:\Users\Others\Downloads\wb2.png" alt="Project Image 1">
-                        <img src="C:\Users\Others\Downloads\wb3.jpg" alt="Project Image 1">
-                        <img src="C:\Users\Others\Downloads\wb4.png" alt="Project Image 1">
-                        <img src="C:\Users\Others\Downloads\w5.png" alt="Project Image 1">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <p>
-                        Reference: <a href="https://github.com/Fbaldesamo?tab=repositories">GitHub Repositories</a><br><br>
-                        <strong>Web Movie Booking System - March 2023</strong><br>
-                        A user-friendly online platform designed for seamless movie ticket reservations.
-                        The system allows users to browse movie listings, select showtimes, and book tickets with ease.
-                        Features include real-time seat availability,
-                        Ideal for enhancing the movie-going experience with convenience and efficiency.
-                    </p>
-                </div>
-            </div>
-
-
         </section>
     </main>
     <footer>
-        <p>&copy; 2024 My Portfolio</p>
+        <p>&copy; 2024 Franco Baldesamo. All rights reserved.</p>
     </footer>
 </body>
 </html>
